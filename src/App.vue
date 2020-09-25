@@ -16,6 +16,9 @@
   }
 
   .container {
-    @include container
+    min-width: 300px;
+    max-width: 1024px;
+    margin: 0 auto;
   }
+
 </style>
