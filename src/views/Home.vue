@@ -1,16 +1,16 @@
 <template>
   <div  class="home">
-    <BotList/>
+    <BotsList/>
   </div>
 </template>
 
 <script>
-import BotList from '../components/BotList.vue';
+import BotsList from '../components/BotsList.vue';
 
 export default {
   name: 'Home',
   components: {
-    BotList,
+    BotsList,
   },
 };
 </script>

@@ -1,0 +1,20 @@
+
+@mixin font_rule {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-style: normal;
+  background: white;
+  font-size: $document_font_size;
+}
+
+@mixin centryfy_row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin container {
+  min-width: 300px;
+  max-width: 1024px;
+  margin: 0 auto;
+}

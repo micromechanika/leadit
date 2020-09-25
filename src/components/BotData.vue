@@ -1,6 +1,6 @@
 <template>
   <div class="botData">
-    <div class="botName"><p>som bot name</p></div>
+    <div class="botName"><p>{{bot_data.name}}</p></div>
     <div class="deleteBot"><p>remove bot</p></div>
   </div>
 </template>
@@ -8,6 +8,25 @@
 <script>
 export default {
   name: 'BotData',
+  props: {
+    bot_data: {
+      type: Object,
+      default() {
+        return {
+          name: 'leadit bot',
+          description: 'leadit you',
+          image: 'som image padr',
+          date: '25.09.2020',
+        };
+      },
+    },
+    selected: {
+      type: null,
+      default() {
+        return null;
+      },
+    },
+  },
 };
 </script>
 
@@ -15,38 +34,32 @@ export default {
   .botData {
     width: 100%;
     height: 100%;
-    margin: 0.5rem;
+    margin: 0.5em 0;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
-    font-size: 0.8rem;
+    font-size: 1em;
+    border: 0.1em solid black;
   }
 
   .botName {
-    width: 90%;
-    margin: 1rem;
+    width: 90vmax;
+    margin: 1em;
 
     p {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      justify-content: center;
+     @include centryfy_row;
     }
   }
 
   .deleteBot {
-    width: 10%;
-    margin: 1rem;
-    border: 0.1rem solid crimson;
-    border-radius: 0.5rem;
-    background-color: crimson;
+    width: 10vmax;
+    margin: 1em;
+
+    @include delete_button;
 
     p {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      justify-content: center;
+      @include centryfy_row;
     }
   }
 </style>

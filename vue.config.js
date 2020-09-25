@@ -1,11 +1,11 @@
 module.exports = {
   publicPath: process.env.NODE_ENV === 'production'
-    ? '/starnavi-test/'
+    ? '/leadit/'
     : '/',
   css: {
     loaderOptions: {
       sass: {
-        prependData: '@import "@/assets/styles/globalVars.scss";',
+        prependData: '@import "@/assets/styles/main.scss";',
       },
     },
   },

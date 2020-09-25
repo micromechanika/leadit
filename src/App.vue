@@ -1,6 +1,8 @@
 <template>
   <div id="app">
-    <router-view/>
+    <div class="container">
+      <router-view/>
+    </div>
   </div>
 </template>
 
@@ -10,13 +12,10 @@
   }
 
   body {
-    font-family: Avenir, Helvetica, Arial, sans-serif;
-    font-style: normal;
-    background: white;
-    font-size: 1vmax;
+    @include font_rule
   }
 
-  #app {
-
+  .container {
+    @include container
   }
 </style>
