@@ -1,6 +1,10 @@
 //buton
 $delete_button_color: crimson;
+$delete_button_text_color: white;
 $delete_button_border_color: crimson;
+//event
+$delete_button_hover_color: #a30d0d;
+
 
 
 @mixin delete_button{
@@ -9,4 +13,8 @@ $delete_button_border_color: crimson;
   background-color: $delete_button_color;
   user-select: none;
   cursor: pointer;
+  color: $delete_button_text_color;
+  &:hover{
+    background-color: $delete_button_hover_color;
+  }
 }

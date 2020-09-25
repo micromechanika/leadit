@@ -61,5 +61,6 @@ export default {
     p {
       @include centryfy_row;
     }
+
   }
 </style>
