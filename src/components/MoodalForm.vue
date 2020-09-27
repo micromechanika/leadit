@@ -7,12 +7,8 @@
       <label for="botdescription">bot description:</label><br>
       <input type="text" id="botdescription" name="botdescription" :value=bot_data.description><br>
 
-      <label for="file">
-        <strong>Choose a file</strong>
-        <span class="box__dragndrop"> or drag it here</span>.
-      </label><br>
-      <input class="box__file"
-             type="file" name="files[]"
+      <label for="file">Choose a file:</label><br>
+      <input type="file" name="files[]"
              id="file"
              data-multiple-caption="{count} files selected"
              multiple/><br>
@@ -20,7 +16,7 @@
       <label for="botdate">bot date:</label><br>
       <input type="text" id="botdate" name="botdate" :value=bot_data.date><br>
 
-      <button class="box__button" type="submit">Save</button><br>
+      <div class="saveBotInfo"><p>Save</p></div>
 
     </form>
   </div>
@@ -69,4 +65,19 @@ export default {
     border: 0.1em solid $form_border_color;
   }
 
+  .saveBotInfo {
+    width: 10vmax;
+    margin: 1em;
+
+    @include button(
+        $save_button_color,
+        $save_button_border_color,
+        $save_button_text_color,
+        $save_button_hover_color
+    );
+
+    p {
+      @include centryfy_row;
+    }
+  }
 </style>

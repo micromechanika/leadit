@@ -1,20 +1,17 @@
-//buton
+//delete
 $delete_button_color: crimson;
 $delete_button_text_color: white;
 $delete_button_border_color: crimson;
-//event
 $delete_button_hover_color: #a30d0d;
 
+//save
+$save_button_color: green;
+$save_button_text_color: white;
+$save_button_border_color: green;
+$save_button_hover_color: #025502;
 
 
-@mixin delete_button{
-  border: 0.1em solid $delete_button_border_color;
-  border-radius: 0.5em;
-  background-color: $delete_button_color;
-  user-select: none;
-  cursor: pointer;
-  color: $delete_button_text_color;
-  &:hover{
-    background-color: $delete_button_hover_color;
-  }
-}
+
+
+
+

@@ -56,7 +56,12 @@ export default {
     width: 10vmax;
     margin: 1em;
 
-    @include delete_button;
+    @include button(
+        $delete_button_color,
+        $delete_button_border_color,
+        $delete_button_text_color,
+        $delete_button_hover_color
+    );
 
     p {
       @include centryfy_row;
