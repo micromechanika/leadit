@@ -1,7 +1,7 @@
 <template>
   <div class="botData">
     <div class="botName"><p>{{bot_data.name}}</p></div>
-    <div class="deleteBot"><p>remove bot</p></div>
+    <button class="deleteBot"><p>remove bot</p></button>
   </div>
 </template>
 
@@ -44,7 +44,7 @@ export default {
   }
 
   .botName {
-    width: 90vmax;
+    width: 90vw;
     margin: 1em;
 
     p {
@@ -53,7 +53,7 @@ export default {
   }
 
   .deleteBot {
-    width: 10vmax;
+    width: 10vw;
     margin: 1em;
 
     @include button(

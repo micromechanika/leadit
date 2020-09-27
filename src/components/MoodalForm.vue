@@ -1,22 +1,45 @@
 <template>
   <div class="modalForm">
-    <form>
-      <label for="botname">bot name:</label><br>
-      <input type="text" id="botname" name="botname" :value=bot_data.name><br>
+    <form enctype="multipart/form-data">
+      <div class="formMarkup">
 
-      <label for="botdescription">bot description:</label><br>
-      <input type="text" id="botdescription" name="botdescription" :value=bot_data.description><br>
+        <div class="logo">
+          <div class="botLogo">
+              <img :src="`${bot_data.image}`">
+          </div>
+          <label class="choceFile" for="file">
+            <input type="file"
+                   accept="image/*"
+                   id="file"/>
+            <p>Choose a file</p>
+          </label>
+        </div>
 
-      <label for="file">Choose a file:</label><br>
-      <input type="file" name="files[]"
-             id="file"
-             data-multiple-caption="{count} files selected"
-             multiple/><br>
+        <div class="folders">
+            <input
+              type="text"
+              name="botname"
+              placeholder="enter bot name"
+              :value=bot_data.name>
 
-      <label for="botdate">bot date:</label><br>
-      <input type="text" id="botdate" name="botdate" :value=bot_data.date><br>
+            <input
+              type="text"
+              name="botdescription"
+              placeholder="enter bot descriptions"
+              :value=bot_data.description>
 
-      <div class="saveBotInfo"><p>Save</p></div>
+            <input
+              type="text"
+              name="botdate"
+              placeholder="enter bot date"
+              :value=bot_data.date>
+        </div>
+
+      </div>
+
+      <div class="buttons">
+        <button class="saveBotInfo"><p>Save</p></button>
+      </div>
 
     </form>
   </div>
@@ -30,10 +53,10 @@ export default {
       type: Object,
       default() {
         return {
-          name: 'leadit bot',
-          description: 'leadit you',
-          image: 'som image padr',
-          date: '25.09.2020',
+          name: '',
+          description: '',
+          image: '../img/logo.jpg',
+          date: '',
         };
       },
     },
@@ -55,8 +78,8 @@ export default {
   }
 
   form {
-    width: 80vw;
-    height: 60vh;
+    width: 60vw;
+    height: 40vh;
     position: relative;
     top: 50%;
     left: 50%;
@@ -65,9 +88,45 @@ export default {
     border: 0.1em solid $form_border_color;
   }
 
+  .formMarkup {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .logo {
+    width: 50vw;
+    margin: 0.5em;
+  }
+  .botLogo {
+    width: 20vw;
+    height: 20vw;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+      border: none;
+    }
+  }
+
+  .folders {
+    width: 50vw;
+    display: flex;
+    padding: 0 0.5em;
+    flex-direction: column;
+    input {
+      margin: 0.5em;
+    }
+  }
+
+  .buttons {
+    position: absolute;
+    right: 2vw;
+    bottom: 2vw;
+  }
+
   .saveBotInfo {
-    width: 10vmax;
-    margin: 1em;
+    width: 10vw;
 
     @include button(
         $save_button_color,
@@ -80,4 +139,27 @@ export default {
       @include centryfy_row;
     }
   }
+
+  .choceFile {
+    width: 10vw;
+    margin: 1em;
+
+    input[type="file"] {
+      display: none;
+    }
+    display: inline-block;
+
+    @include button(
+        $file_button_color,
+        $file_button_border_color,
+        $file_button_text_color,
+        $file_button_hover_color
+    );
+
+    p {
+      @include centryfy_row;
+    }
+
+  }
+
 </style>
