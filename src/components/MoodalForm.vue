@@ -11,7 +11,8 @@
 
           <div :class="[filelist.length>0?'imageInfo':'removeImageInfo']">
             <p>{{bot.image.name}} ({{bot.image.size/1e6}} mb)</p>
-            <button class="removeImageButton" type="button"
+            <button class="removeImageButton"
+                    type="button"
                     @click="remove(filelist.indexOf(bot.name))"
                     title="remove image"><p>x</p>
             </button>
@@ -56,7 +57,10 @@
         </div>
       </div>
       <div class="buttons">
-        <button class="saveBotInfo"><p>Save</p></button>
+        <button class="saveBotInfo"
+                type="button">
+                <p>Save</p>
+        </button>
       </div>
     </form>
   </div>
@@ -139,7 +143,7 @@ export default {
     width: 50vw;
     height: 40vh;
     margin: 0.5em;
-    border: 0.1em solid black;
+    border: 0.1em dashed black;
     background-color: #b8e8d8;
     position: relative;
     left: 0;
@@ -147,6 +151,20 @@ export default {
     top: 0;
     bottom: 0;
   }
+
+  .removeImageInfo {
+    display: none;
+  }
+  .removePlaceholder{
+    border: 0.1em solid black;
+    background-color: transparent;
+  }
+  .removeImageBorderRadius{
+    width: 0;
+    height: 0;
+    border: none;
+  }
+
   .imageInfo{
     display: flex;
     flex-direction: row;
@@ -156,32 +174,22 @@ export default {
       margin: 0.5em;
     }
   }
-  .removeImageInfo {
-    display: none;
+
+  .botLogo {
+    width: 20vmax;
+    height: 20vmax;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
   }
-  .removePlaceholder{
-    background-color: transparent;
-  }
-  .removeImageBorderRadius{
-    width: 0;
-    height: 0;
-    border: none;
-  }
+
   .imageBorder {
     width: 100%;
     height: 100%;
     border: none;
     object-fit: cover;
     border-radius: 50%;
-  }
-
-  .botLogo {
-    width: 20vw;
-    height: 20vw;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
   }
 
   .choceFile {
