@@ -9,11 +9,13 @@
              @dragleave.prevent.stop
         >
 
-          <p>{{bot.image.name}} ({{bot.image.size/1e6}} mb)</p>
-          <button class="removeImageButton" type="button"
-                  @click="remove(filelist.indexOf(bot.name))"
-                  title="remove image"><p>x</p>
-          </button>
+          <div :class="[filelist.length>0?'imageInfo':'removeImageInfo']">
+            <p>{{bot.image.name}} ({{bot.image.size/1e6}} mb)</p>
+            <button class="removeImageButton" type="button"
+                    @click="remove(filelist.indexOf(bot.name))"
+                    title="remove image"><p>x</p>
+            </button>
+          </div>
 
           <div class="botLogo">
             <img
@@ -145,7 +147,18 @@ export default {
     top: 0;
     bottom: 0;
   }
-
+  .imageInfo{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    p{
+      margin: 0.5em;
+    }
+  }
+  .removeImageInfo {
+    display: none;
+  }
   .removePlaceholder{
     background-color: transparent;
   }
@@ -229,6 +242,8 @@ export default {
   .removeImageButton {
     width: 2vw;
     height: 2vw;
+    margin: 0.5em;
+    padding: 0;
     font-size: 0.8em;
     line-height: 0;
     @include button(
