@@ -8,17 +8,19 @@
              @dragenter.prevent.stop
              @dragleave.prevent.stop
         >
-          <div class="botLogo">
-            <img
-              :class="[filelist.length>0?'imageBorder':'removeImageBorderRadius']"
-              :src=bot.image.src>
-          </div>
 
           <p>{{bot.image.name}} ({{bot.image.size/1e6}} mb)</p>
           <button class="removeImageButton" type="button"
                   @click="remove(filelist.indexOf(bot.name))"
                   title="remove image"><p>x</p>
           </button>
+
+          <div class="botLogo">
+            <img
+              :class="[filelist.length>0?'imageBorder':'removeImageBorderRadius']"
+              :src=bot.image.src>
+          </div>
+
           <label class="choceFile" for="file">
             <input
                    ref="upload"
@@ -29,6 +31,7 @@
             />
             <p>Choose a file</p>
           </label>
+
         </div>
         <div class="folders">
           <input
@@ -67,7 +70,7 @@ export default {
         return {
           name: '',
           description: '',
-          image: { src: '', name: '', size: '' },
+          image: { src: '', name: '', size: 0 },
           date: '',
         };
       },
@@ -96,8 +99,7 @@ export default {
     },
     remove(i) {
       this.filelist.splice(i, 1);
-      this.bot.image.name = '';
-      this.bot.image.size = '';
+      this.bot.image = { src: '', name: '', size: 0 };
     },
   },
 };
