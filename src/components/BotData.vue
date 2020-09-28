@@ -1,6 +1,6 @@
 <template>
   <div class="botData">
-    <div class="botName"><p>{{bot_data.name}}</p></div>
+    <div class="botName"><p>{{bot.name}}</p></div>
     <button class="deleteBot"><p>remove bot</p></button>
   </div>
 </template>
@@ -9,7 +9,7 @@
 export default {
   name: 'BotData',
   props: {
-    bot_data: {
+    bot: {
       type: Object,
       default() {
         return {

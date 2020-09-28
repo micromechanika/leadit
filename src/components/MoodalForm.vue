@@ -2,45 +2,49 @@
   <div class="modalForm">
     <form enctype="multipart/form-data">
       <div class="formMarkup">
-
-        <div class="logo">
+        <div class="logo"
+             @drop.prevent.stop="uploadFile"
+             @dragover.prevent.stop
+             @dragenter.prevent.stop
+             @dragleave.prevent.stop
+        >
           <div class="botLogo">
-              <img :src="`${bot_data.image}`">
+            <p v-for="f in filelist" :key="f.name">{{f.name}} ( {{f.size/1e6 }} mb )</p>
           </div>
           <label class="choceFile" for="file">
-            <input type="file"
+            <input
+                   multiple
+                   type="file"
                    accept="image/*"
-                   id="file"/>
+                   id="file"
+                   @change="loadFile"
+            />
             <p>Choose a file</p>
           </label>
         </div>
-
         <div class="folders">
-            <input
-              type="text"
-              name="botname"
-              placeholder="enter bot name"
-              :value=bot_data.name>
+          <input
+            type="text"
+            name="botname"
+            placeholder="enter bot name"
+            :value=bot.name>
 
-            <input
-              type="text"
-              name="botdescription"
-              placeholder="enter bot descriptions"
-              :value=bot_data.description>
+          <input
+            type="text"
+            name="botdescription"
+            placeholder="enter bot descriptions"
+            :value=bot.description>
 
-            <input
-              type="text"
-              name="botdate"
-              placeholder="enter bot date"
-              :value=bot_data.date>
+          <input
+            type="text"
+            name="botdate"
+            placeholder="enter bot date"
+            :value=bot.date>
         </div>
-
       </div>
-
       <div class="buttons">
         <button class="saveBotInfo"><p>Save</p></button>
       </div>
-
     </form>
   </div>
 </template>
@@ -49,7 +53,7 @@
 export default {
   name: 'MoodalForm',
   props: {
-    bot_data: {
+    bot: {
       type: Object,
       default() {
         return {
@@ -59,6 +63,19 @@ export default {
           date: '',
         };
       },
+    },
+  },
+  data() {
+    return {
+      filelist: [],
+    };
+  },
+  methods: {
+    loadFile(e) {
+      this.filelist = [...e.target.files];
+    },
+    uploadFile(e) {
+      this.filelist = [...e.dataTransfer.files];
     },
   },
 };
@@ -97,14 +114,15 @@ export default {
     width: 50vw;
     margin: 0.5em;
   }
+
   .botLogo {
-    width: 20vw;
-    height: 20vw;
+    /*width: 20vw;*/
+    /*height: 20vw;*/
     img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      border-radius: 50%;
+      /*border-radius: 50%;*/
       border: none;
     }
   }
@@ -114,6 +132,7 @@ export default {
     display: flex;
     padding: 0 0.5em;
     flex-direction: column;
+
     input {
       margin: 0.5em;
     }
@@ -147,6 +166,7 @@ export default {
     input[type="file"] {
       display: none;
     }
+
     display: inline-block;
 
     @include button(
