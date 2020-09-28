@@ -141,15 +141,13 @@ export default {
 
   .logo {
     width: 50vw;
-    height: 40vh;
     margin: 0.5em;
     border: 0.1em dashed black;
     background-color: #b8e8d8;
-    position: relative;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
   }
 
   .removeImageInfo {
@@ -178,10 +176,6 @@ export default {
   .botLogo {
     width: 20vmax;
     height: 20vmax;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
   }
 
   .imageBorder {
@@ -195,9 +189,7 @@ export default {
   .choceFile {
     width: 10vw;
     margin: 1em;
-    position: absolute;
-    bottom: 0.5vw;
-    left: 0.5vw;
+
     input[type="file"] {
       display: none;
     }
