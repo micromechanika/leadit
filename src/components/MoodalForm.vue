@@ -9,12 +9,12 @@
              @dragleave.prevent.stop
         >
           <div class="botLogo">
-            <p v-for="f in filelist" :key="f.name">{{f.name}} ( {{f.size/1e6 }} mb )</p>
+            <p>{{bot.imgProps.name}} ( {{bot.imgProps.size/1e6 }} mb )</p>
+            <img :src=bot.image>
           </div>
           <label class="choceFile" for="file">
             <input
-                   ref="file"
-                   multiple
+                   ref="upload"
                    type="file"
                    accept="image/*"
                    id="file"
@@ -60,7 +60,8 @@ export default {
         return {
           name: '',
           description: '',
-          image: '../img/logo.jpg',
+          image: '',
+          imgProps: { name: '', size: '' },
           date: '',
         };
       },
@@ -73,10 +74,13 @@ export default {
   },
   methods: {
     loadFile() {
-      this.filelist = [...this.$refs.file.files];
+      this.filelist = [...this.$refs.upload.files];
+      this.bot.image = URL.createObjectURL(this.filelist[0]);
+      this.bot.imgProps.name = this.filelist[0].name;
+      this.bot.imgProps.size = this.filelist[0].size;
     },
     uploadFile(e) {
-      this.$refs.file.files = e.dataTransfer.files;
+      this.$refs.upload.files = e.dataTransfer.files;
       this.loadFile();
     },
   },
