@@ -13,6 +13,7 @@
           </div>
           <label class="choceFile" for="file">
             <input
+                   ref="file"
                    multiple
                    type="file"
                    accept="image/*"
@@ -71,11 +72,12 @@ export default {
     };
   },
   methods: {
-    loadFile(e) {
-      this.filelist = [...e.target.files];
+    loadFile() {
+      this.filelist = [...this.$refs.file.files];
     },
     uploadFile(e) {
-      this.filelist = [...e.dataTransfer.files];
+      this.$refs.file.files = e.dataTransfer.files;
+      this.loadFile();
     },
   },
 };
