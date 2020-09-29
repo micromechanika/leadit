@@ -15,5 +15,10 @@ export default {
     MoodalForm,
     BotsList,
   },
+  data() {
+    return {
+      time2: '',
+    };
+  },
 };
 </script>

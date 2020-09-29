@@ -26,11 +26,11 @@
 
           <label class="choceFile" for="file">
             <input
-                   ref="upload"
-                   type="file"
-                   accept="image/*"
-                   id="file"
-                   @change="loadFile"
+              ref="upload"
+              type="file"
+              accept="image/*"
+              id="file"
+              @change="loadFile"
             />
             <p>Choose a file</p>
           </label>
@@ -38,28 +38,27 @@
         </div>
         <div class="folders">
           <input
+            class="inputs"
             type="text"
             name="botname"
             placeholder="enter bot name"
             :value=bot.name>
-
           <input
+            class="inputs"
             type="text"
             name="botdescription"
             placeholder="enter bot descriptions"
             :value=bot.description>
-
-          <input
-            type="text"
-            name="botdate"
-            placeholder="enter bot date"
-            :value=bot.date>
+          <Datepicker class="inputs"
+            name = "botdate"
+            v-model="bot.date"
+            placeholder="enter bot date" />
         </div>
       </div>
       <div class="buttons">
         <button class="saveBotInfo"
                 type="button">
-                <p>Save</p>
+          <p>Save</p>
         </button>
       </div>
     </form>
@@ -67,6 +66,8 @@
 </template>
 
 <script>
+import Datepicker from 'vuejs-datepicker';
+
 export default {
   name: 'MoodalForm',
   props: {
@@ -76,11 +77,18 @@ export default {
         return {
           name: '',
           description: '',
-          image: { src: '', name: '', size: 0 },
+          image: {
+            src: '',
+            name: '',
+            size: 0,
+          },
           date: '',
         };
       },
     },
+  },
+  components: {
+    Datepicker,
   },
   data() {
     return {
@@ -105,7 +113,11 @@ export default {
     },
     remove(i) {
       this.filelist.splice(i, 1);
-      this.bot.image = { src: '', name: '', size: 0 };
+      this.bot.image = {
+        src: '',
+        name: '',
+        size: 0,
+      };
     },
   },
 };
@@ -153,22 +165,25 @@ export default {
   .removeImageInfo {
     display: none;
   }
-  .removePlaceholder{
+
+  .removePlaceholder {
     border: 0.1em solid black;
     background-color: transparent;
   }
-  .removeImageBorderRadius{
+
+  .removeImageBorderRadius {
     width: 0;
     height: 0;
     border: none;
   }
 
-  .imageInfo{
+  .imageInfo {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    p{
+
+    p {
       margin: 0.5em;
     }
   }
@@ -214,7 +229,7 @@ export default {
     padding: 0 0.5em;
     flex-direction: column;
 
-    input {
+    .inputs {
       margin: 0.5em;
     }
   }
