@@ -20,12 +20,6 @@ export default {
         };
       },
     },
-    selected: {
-      type: null,
-      default() {
-        return null;
-      },
-    },
   },
 };
 </script>

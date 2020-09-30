@@ -1,16 +1,27 @@
 <template>
   <div class="botlist">
-    <BotData/>
+    <BotData
+      v-for="(bot, botIndex) in this.bots"
+      :key="botIndex"
+      :bot="bot"
+    />
   </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 import BotData from './BotData.vue';
 
 export default {
   name: 'BotList',
   components: {
     BotData,
+  },
+  computed: {
+    ...mapGetters({ bots: 'botList' }),
+  },
+  beforeCreate() {
+    this.$store.dispatch('botList');
   },
 };
 </script>

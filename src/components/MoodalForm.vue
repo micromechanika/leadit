@@ -1,6 +1,6 @@
 <template>
   <div class="modalForm">
-    <form enctype="multipart/form-data">
+    <form>
       <div class="formMarkup">
         <div :class="[filelist.length>0?'removePlaceholder':'','logo']"
              @drop.prevent.stop="uploadFile"
@@ -38,18 +38,20 @@
         </div>
         <div class="folders">
           <input
-            class="inputs"
             type="text"
             name="botname"
             placeholder="enter bot name"
             :value=bot.name>
           <input
-            class="inputs"
             type="text"
             name="botdescription"
             placeholder="enter bot descriptions"
             :value=bot.description>
-          <Datepicker class="inputs"
+          <Datepicker
+            wrapper-class = 'inputs'
+            :monday-first = true
+            input-class = 'dpinput'
+            format = 'dd MMMM yyyy'
             name = "botdate"
             v-model="bot.date"
             placeholder="enter bot date" />
@@ -223,13 +225,22 @@ export default {
 
   }
 
+  .dpinput {
+    width: 100%;
+    background-color: white;
+  }
+
   .folders {
     width: 50vw;
     display: flex;
     padding: 0 0.5em;
     flex-direction: column;
 
-    .inputs {
+   .inputs {
+     margin: 0.5em;
+   }
+
+    input {
       margin: 0.5em;
     }
   }
