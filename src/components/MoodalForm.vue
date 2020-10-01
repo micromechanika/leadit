@@ -1,5 +1,5 @@
 <template>
-  <div class="modalForm">
+  <div class="modalForm" @click.stop.self="togleModal">
     <form>
       <div class="formMarkup">
         <div :class="[filelist.length>0?'removePlaceholder':'','logo']"
@@ -68,6 +68,7 @@
 </template>
 
 <script>
+import { mapMutations } from 'vuex';
 import Datepicker from 'vuejs-datepicker';
 
 export default {
@@ -103,6 +104,7 @@ export default {
     },
   },
   methods: {
+    ...mapMutations({ togleModal: 'openModal' }),
     loadFile() {
       this.filelist = [...this.$refs.upload.files];
       this.bot.image.src = URL.createObjectURL(this.filelist[0]);
@@ -130,12 +132,12 @@ export default {
     width: 100vw;
     height: 100vh;
     position: absolute;
+    z-index: 1000;
     top: 0;
     left: 0;
     bottom: 0;
     right: 0;
     background-color: $modal_form_background_color;
-    z-index: 1000;
   }
 
   form {

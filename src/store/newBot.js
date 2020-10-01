@@ -12,16 +12,21 @@ const botState = () => ({
     },
     date: '',
   },
+  openModal: false,
 });
 
 const newBot = {
   state: botState(),
   getters: {
     newBot: (state) => state.bot,
+    openModal: (state) => state.openModal,
   },
   mutations: {
     newBot: (state, payload) => {
       this.$store.allBots.botList.push(payload);
+    },
+    openModal: (state) => {
+      state.openModal = !state.openModal;
     },
   },
   actions: {

@@ -1,11 +1,13 @@
 <template>
-  <div  class="home">
+  <div class="home">
+    <button class="createBot" @click="togleModal"><p>create bot</p></button>
     <BotsList/>
-    <MoodalForm/>
+    <MoodalForm v-show="openModal" />
   </div>
 </template>
 
 <script>
+import { mapMutations, mapGetters } from 'vuex';
 import BotsList from '../components/BotsList.vue';
 import MoodalForm from '../components/MoodalForm.vue';
 
@@ -16,9 +18,32 @@ export default {
     BotsList,
   },
   data() {
-    return {
-      time2: '',
-    };
+    return {};
+  },
+  computed: {
+    ...mapGetters({ openModal: 'openModal' }),
+  },
+  methods: {
+    ...mapMutations({ togleModal: 'openModal' }),
   },
 };
 </script>
+
+<style lang="scss" scoped>
+  .createBot {
+    width: 10vw;
+    margin: 1em;
+
+    @include button(
+        $create_button_color,
+        $create_button_border_color,
+        $create_button_text_color,
+        $create_button_hover_color
+    );
+
+    p {
+      @include centryfy_row;
+    }
+
+  }
+</style>
