@@ -1,5 +1,5 @@
 // eslint-disable-next-line no-unused-vars
-import { ROUTES, instance } from './axiosProps';
+import { ROUTES, instance } from '../axiosProps';
 
 const botListState = () => ({
   botList: [],
@@ -10,9 +10,8 @@ const allBots = {
     botList: (state) => state.botList,
   },
   mutations: {
-    botList: (state, payload) => {
-      state.botList = payload;
-    },
+    botList: (state, payload) => { state.botList = payload; },
+    botListAdd: (state, payload) => { state.botList.push(payload); },
   },
   actions: {
     botList: (context) => {

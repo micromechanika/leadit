@@ -21,7 +21,8 @@
           <div class="botLogo">
             <img
               :class="[filelist.length>0?'imageBorder':'removeImageBorderRadius']"
-              :src=bot.image.src>
+              :src=bot.image.src
+            >
           </div>
 
           <label class="choceFile" for="file">
@@ -41,12 +42,12 @@
             type="text"
             name="botname"
             placeholder="enter bot name"
-            :value=bot.name>
+            v-model=bot.name>
           <input
             type="text"
             name="botdescription"
             placeholder="enter bot descriptions"
-            :value=bot.description>
+            v-model=bot.description>
           <Datepicker
             wrapper-class = 'inputs'
             :monday-first = true
@@ -57,9 +58,10 @@
             placeholder="enter bot date" />
         </div>
       </div>
-      <div class="buttons">
+      <div class="buttons" >
         <button class="saveBotInfo"
-                type="button">
+                type="button"
+                @click="newBot">
           <p>Save</p>
         </button>
       </div>
@@ -68,28 +70,11 @@
 </template>
 
 <script>
-import { mapMutations } from 'vuex';
+import { mapGetters, mapMutations } from 'vuex';
 import Datepicker from 'vuejs-datepicker';
 
 export default {
   name: 'MoodalForm',
-  props: {
-    bot: {
-      type: Object,
-      default() {
-        return {
-          name: '',
-          description: '',
-          image: {
-            src: '',
-            name: '',
-            size: 0,
-          },
-          date: '',
-        };
-      },
-    },
-  },
   components: {
     Datepicker,
   },
@@ -99,12 +84,16 @@ export default {
     };
   },
   computed: {
-    parseSize() {
-      return 'asdasd';
-    },
+    ...mapGetters({ bot: 'newBot' }),
   },
   methods: {
-    ...mapMutations({ togleModal: 'openModal' }),
+    ...mapMutations({
+      togleModal: 'openModal',
+    }),
+    newBot() {
+      this.$store.commit('botListAdd', this.bot);
+      this.$store.commit('resetState');
+    },
     loadFile() {
       this.filelist = [...this.$refs.upload.files];
       this.bot.image.src = URL.createObjectURL(this.filelist[0]);

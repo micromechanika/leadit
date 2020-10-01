@@ -1,5 +1,5 @@
 // eslint-disable-next-line no-unused-vars
-import { ROUTES, instance } from './axiosProps';
+import { ROUTES, instance } from '../axiosProps';
 
 const botState = () => ({
   bot: {
@@ -23,7 +23,10 @@ const newBot = {
   },
   mutations: {
     newBot: (state, payload) => {
-      this.$store.allBots.botList.push(payload);
+      state.bot = payload;
+    },
+    resetState: (state) => {
+      Object.assign(state, botState());
     },
     openModal: (state) => {
       state.openModal = !state.openModal;

@@ -1,7 +1,7 @@
 <template>
   <div class="botData">
     <div class="botName"><p>{{bot.name}}</p></div>
-    <button class="deleteBot"><p>remove bot</p></button>
+    <button class="deleteBot" ><p>remove bot</p></button>
   </div>
 </template>
 
@@ -13,10 +13,10 @@ export default {
       type: Object,
       default() {
         return {
-          name: 'leadit bot',
-          description: 'leadit you',
-          image: 'som image padr',
-          date: '25.09.2020',
+          name: '',
+          description: '',
+          image: '',
+          date: '',
         };
       },
     },

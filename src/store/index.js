@@ -1,8 +1,8 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 
-import allBots from './allbots';
-import newBot from './newBot';
+import allBots from './modules/allbots';
+import newBot from './modules/newBot';
 
 Vue.use(Vuex);
 
