@@ -21,19 +21,19 @@ const allBots = {
           name: 'leadit bot',
           description: 'leadit you',
           image: 'som image padr',
-          date: '25.09.2020',
+          date: 'Date Sat Oct 31 2020 19:38:00 GMT+0200 (Eastern European Standard Time)',
         },
         {
           name: 'cnn bot',
           description: 'cnn',
           image: 'cnn logo',
-          date: '25.09.2020',
+          date: 'Date Sat Oct 31 2020 19:38:00 GMT+0200 (Eastern European Standard Time)',
         },
         {
           name: 'news bot',
           description: 'news you',
           image: 'som image news',
-          date: '25.09.2020',
+          date: 'Date Sat Oct 31 2020 19:38:00 GMT+0200 (Eastern European Standard Time)',
         },
       ];
       context.commit('botList', botList);

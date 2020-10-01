@@ -1,6 +1,9 @@
 <template>
   <div class="home">
-    <button class="createBot" @click="togleModal"><p>create bot</p></button>
+    <button class="createBot"
+            @click="cleanModal" >
+      <p>create bot</p>
+    </button>
     <BotsList/>
     <MoodalForm v-show="openModal" />
   </div>
@@ -24,7 +27,11 @@ export default {
     ...mapGetters({ openModal: 'openModal' }),
   },
   methods: {
-    ...mapMutations({ togleModal: 'openModal' }),
+    ...mapMutations({ resetState: 'resetState', togleModal: 'openModal' }),
+    cleanModal() {
+      this.resetState();
+      this.togleModal();
+    },
   },
 };
 </script>

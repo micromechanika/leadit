@@ -1,6 +1,6 @@
 <template>
   <div class="botData">
-    <div class="botName"><p>{{bot.name}}</p></div>
+    <div class="botName" @click="refactorBot"><p>{{bot.name}}</p></div>
     <button class="deleteBot" @click="removeBot" ><p>remove bot</p></button>
   </div>
 </template>
@@ -24,6 +24,10 @@ export default {
   methods: {
     removeBot() {
       this.$emit('removeBot', this.key);
+    },
+    refactorBot() {
+      this.$store.commit('newBot', this.bot);
+      this.$store.commit('openModal');
     },
   },
 };
