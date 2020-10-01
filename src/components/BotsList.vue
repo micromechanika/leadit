@@ -4,6 +4,7 @@
       v-for="(bot, botIndex) in this.bots"
       :key="botIndex"
       :bot="bot"
+      @removeBot="removeBot(botIndex)"
     />
   </div>
 </template>
@@ -19,6 +20,11 @@ export default {
   },
   computed: {
     ...mapGetters({ bots: 'botList' }),
+  },
+  methods: {
+    removeBot(key) {
+      this.$store.commit('removeBot', key);
+    },
   },
   beforeCreate() {
     this.$store.dispatch('botList');

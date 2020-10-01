@@ -1,7 +1,7 @@
 <template>
   <div class="botData">
     <div class="botName"><p>{{bot.name}}</p></div>
-    <button class="deleteBot" ><p>remove bot</p></button>
+    <button class="deleteBot" @click="removeBot" ><p>remove bot</p></button>
   </div>
 </template>
 
@@ -19,6 +19,11 @@ export default {
           date: '',
         };
       },
+    },
+  },
+  methods: {
+    removeBot() {
+      this.$emit('removeBot', this.key);
     },
   },
 };

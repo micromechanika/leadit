@@ -12,6 +12,7 @@ const allBots = {
   mutations: {
     botList: (state, payload) => { state.botList = payload; },
     botListAdd: (state, payload) => { state.botList.push(payload); },
+    removeBot: (state, payload) => { state.botList.splice(payload, 1); },
   },
   actions: {
     botList: (context) => {
