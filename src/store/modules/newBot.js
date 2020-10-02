@@ -13,6 +13,7 @@ const botState = () => ({
     date: '',
   },
   openModal: false,
+  changes: false,
 });
 
 const newBot = {
@@ -20,6 +21,7 @@ const newBot = {
   getters: {
     newBot: (state) => state.bot,
     openModal: (state) => state.openModal,
+    changes: (state) => state.changes,
   },
   mutations: {
     newBot: (state, payload) => {
@@ -30,6 +32,9 @@ const newBot = {
     },
     openModal: (state) => {
       state.openModal = !state.openModal;
+    },
+    changes: (state, payload) => {
+      state.changes = payload;
     },
   },
   actions: {

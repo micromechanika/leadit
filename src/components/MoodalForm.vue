@@ -84,15 +84,17 @@ export default {
     };
   },
   computed: {
-    ...mapGetters({ bot: 'newBot' }),
+    ...mapGetters({ changes: 'changes', bot: 'newBot' }),
   },
   methods: {
     ...mapMutations({
       togleModal: 'openModal',
     }),
     newBot() {
-      this.$store.commit('botListAdd', this.bot);
-      this.$store.commit('resetState');
+      if (this.changes === false) {
+        this.$store.commit('botListAdd', this.bot);
+        this.$store.commit('resetState');
+      }
     },
     loadFile() {
       this.filelist = [...this.$refs.upload.files];

@@ -6,6 +6,8 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
+
 export default {
   name: 'BotData',
   props: {
@@ -21,11 +23,15 @@ export default {
       },
     },
   },
+  computed: {
+    ...mapGetters({ changes: 'changes' }),
+  },
   methods: {
     removeBot() {
       this.$emit('removeBot', this.key);
     },
     refactorBot() {
+      this.$store.commit('changes', true);
       this.$store.commit('newBot', this.bot);
       this.$store.commit('openModal');
     },

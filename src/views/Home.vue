@@ -29,6 +29,7 @@ export default {
   methods: {
     ...mapMutations({ resetState: 'resetState', togleModal: 'openModal' }),
     cleanModal() {
+      this.$store.commit('changes', false);
       this.resetState();
       this.togleModal();
     },
