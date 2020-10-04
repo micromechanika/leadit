@@ -9,7 +9,10 @@
              @dragleave.prevent.stop
         >
 
-          <div :class="[filelist.length>0?'imageInfo':'removeImageInfo']">
+          <div :class="[
+          filelist.length>0 || bot.preview.src !== ''
+          ?'imageInfo':'removeImageInfo'
+          ]">
             <p>{{bot.preview.name}} ({{bot.preview.size/1e6}} mb)</p>
             <button class="removeImageButton"
                     type="button"
@@ -20,7 +23,10 @@
 
           <div class="botLogo">
             <img
-              :class="[filelist.length>0?'imageBorder':'removeImageBorderRadius']"
+              :class="[
+                filelist.length>0 || bot.preview.src !== ''
+                ?'imageBorder':'removeImageBorderRadius'
+                ]"
               :src=bot.preview.src
             >
           </div>
