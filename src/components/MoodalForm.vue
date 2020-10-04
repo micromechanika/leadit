@@ -10,7 +10,7 @@
         >
 
           <div :class="[filelist.length>0?'imageInfo':'removeImageInfo']">
-            <p>{{bot.image.name}} ({{bot.image.size/1e6}} mb)</p>
+            <p>{{bot.preview.name}} ({{bot.preview.size/1e6}} mb)</p>
             <button class="removeImageButton"
                     type="button"
                     @click="remove(filelist.indexOf(bot.name))"
@@ -21,7 +21,7 @@
           <div class="botLogo">
             <img
               :class="[filelist.length>0?'imageBorder':'removeImageBorderRadius']"
-              :src=bot.image.src
+              :src=bot.preview.src
             >
           </div>
 
@@ -31,6 +31,7 @@
               type="file"
               accept="image/*"
               id="file"
+              name="botlogo"
               @change="loadFile"
             />
             <p>Choose a file</p>
@@ -84,7 +85,7 @@ export default {
     };
   },
   computed: {
-    ...mapGetters({ changes: 'changes', bot: 'newBot' }),
+    ...mapGetters({ changes: 'changes', bot: 'bot' }),
   },
   methods: {
     ...mapMutations({
@@ -92,15 +93,22 @@ export default {
     }),
     newBot() {
       if (this.changes === false) {
+        // const data = JSON.stringify(infoBot);
+        // console.log(data);
+        // this.$store.dispatch('addBot', data);
+        // this.$store.commit('botListAdd', JSON.parse(data));
+        console.log(this.bot);
         this.$store.commit('botListAdd', this.bot);
         this.$store.commit('resetState');
       }
     },
     loadFile() {
       this.filelist = [...this.$refs.upload.files];
-      this.bot.image.src = URL.createObjectURL(this.filelist[0]);
-      this.bot.image.name = this.filelist[0].name;
-      this.bot.image.size = this.filelist[0].size;
+      // eslint-disable-next-line prefer-destructuring
+      this.bot.image = this.filelist[0];
+      this.bot.preview.src = URL.createObjectURL(this.filelist[0]);
+      this.bot.preview.name = this.filelist[0].name;
+      this.bot.preview.size = this.filelist[0].size;
     },
     uploadFile(e) {
       this.$refs.upload.files = e.dataTransfer.files;
@@ -108,11 +116,8 @@ export default {
     },
     remove(i) {
       this.filelist.splice(i, 1);
-      this.bot.image = {
-        src: '',
-        name: '',
-        size: 0,
-      };
+      this.bot.image = {};
+      this.bot.preview = {};
     },
   },
 };

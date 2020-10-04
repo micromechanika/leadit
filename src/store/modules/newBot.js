@@ -5,11 +5,8 @@ const botState = () => ({
   bot: {
     name: '',
     description: '',
-    image: {
-      src: '',
-      name: '',
-      size: 0,
-    },
+    image: {},
+    preview: {},
     date: '',
   },
   openModal: false,
@@ -19,14 +16,11 @@ const botState = () => ({
 const newBot = {
   state: botState(),
   getters: {
-    newBot: (state) => state.bot,
+    bot: (state) => state.bot,
     openModal: (state) => state.openModal,
     changes: (state) => state.changes,
   },
   mutations: {
-    newBot: (state, payload) => {
-      state.bot = payload;
-    },
     resetState: (state) => {
       Object.assign(state, botState());
     },
@@ -36,14 +30,19 @@ const newBot = {
     changes: (state, payload) => {
       state.changes = payload;
     },
+    refactorBot: (state, payload) => { state.bot = payload; },
   },
   actions: {
-    newBot: (context, payload) => {
-      context.commit('newBot', payload);
-      // instance.headers = { 'content-type': 'multipart/form-data' };
+    addBot: (context, payload) => {
+      console.log(payload);
+      // instance.headers = {
+      //   'content-type': 'multipart/form-data',
+      // };
+      //
       // instance.post(ROUTES.post.newBot, payload)
       //   .then(() => {
-      //     context.commit('newBot', payload);
+      //     // context.commit('addBot', payload);
+      //     // this.$store.commit('botListAdd', JSON.parse(payload));
       //   })
       //   .catch((err) => console.error(err));
     },

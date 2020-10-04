@@ -17,8 +17,9 @@ export default {
         return {
           name: '',
           description: '',
-          image: '',
+          image: {},
           date: '',
+          preview: {},
         };
       },
     },
@@ -31,8 +32,8 @@ export default {
       this.$emit('removeBot', this.key);
     },
     refactorBot() {
+      this.$emit('refactorBot', this.key);
       this.$store.commit('changes', true);
-      this.$store.commit('newBot', this.bot);
       this.$store.commit('openModal');
     },
   },

@@ -13,5 +13,6 @@ export const ROUTES = {
 
 export const instance = axios.create({
   baseURL: SERVER_URL,
-  timeout: 1000,
+  timeout: 5000,
+  headers: { 'Access-Control-Allow-Origin': '*' },
 });

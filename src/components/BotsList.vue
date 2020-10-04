@@ -5,6 +5,7 @@
       :key="botIndex"
       :bot="bot"
       @removeBot="removeBot(botIndex)"
+      @refactorBot="refactorBot(botIndex)"
     />
   </div>
 </template>
@@ -24,6 +25,9 @@ export default {
   methods: {
     removeBot(key) {
       this.$store.commit('removeBot', key);
+    },
+    refactorBot(key) {
+      this.$store.commit('refactorBot', this.bots[key]);
     },
   },
   beforeCreate() {
