@@ -42,18 +42,17 @@ const newBot = {
     refactorBot: (state, payload) => { state.bot = payload; },
   },
   actions: {
-    addBot: (context, payload) => {
-      console.log(payload);
-      // instance.headers = {
-      //   'content-type': 'multipart/form-data',
-      // };
-      //
-      // instance.post(ROUTES.post.newBot, payload)
-      //   .then(() => {
-      //     // context.commit('addBot', payload);
-      //     // this.$store.commit('botListAdd', JSON.parse(payload));
-      //   })
-      //   .catch((err) => console.error(err));
+    postBot: (context, payload) => {
+      // console.log(payload);
+      instance.headers = {
+        'content-type': 'multipart/form-data',
+      };
+      instance.post(ROUTES.post.newBot, payload)
+        .then(() => {
+          // context.commit('addBot', payload);
+          // this.$store.commit('botListAdd', JSON.parse(payload));
+        })
+        .catch((err) => console.error(err));
     },
   },
 };

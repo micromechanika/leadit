@@ -25,13 +25,14 @@ export default {
   methods: {
     removeBot(key) {
       this.$store.commit('removeBot', key);
+      this.$store.dispatch('deleteBot', key);
     },
     refactorBot(key) {
       this.$store.commit('refactorBot', this.bots.find((i) => i.id === key));
     },
   },
   beforeCreate() {
-    this.$store.dispatch('botList');
+    this.$store.dispatch('getBotList');
   },
 };
 </script>

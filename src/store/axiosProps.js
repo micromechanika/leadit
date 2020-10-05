@@ -12,6 +12,9 @@ export const ROUTES = {
   put: {
     changeBot: '/changebot',
   },
+  delete: {
+    deleteBot: '/delete',
+  },
 };
 
 export const instance = axios.create({

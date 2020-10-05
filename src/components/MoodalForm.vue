@@ -119,8 +119,10 @@ export default {
         // this.$store.dispatch('addBot', data);
         // this.$store.commit('botListAdd', JSON.parse(data));
         this.$store.commit('botListAdd', this.bot);
+        this.$store.dispatch('postBot', this.bot);
         this.$store.commit('resetBotState');
       }
+      this.$store.dispatch('changeBot', this.bot);
     },
     loadFile() {
       this.filelist = [...this.$refs.upload.files];
