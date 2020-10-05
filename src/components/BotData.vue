@@ -18,8 +18,8 @@ export default {
           name: '',
           description: '',
           image: {},
-          date: '',
           preview: {},
+          date: '',
         };
       },
     },

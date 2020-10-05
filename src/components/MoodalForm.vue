@@ -2,7 +2,7 @@
   <div class="modalForm" @click.stop.self="togleModal">
     <form>
       <div class="formMarkup">
-        <div :class="[filelist.length>0?'removePlaceholder':'','logo']"
+        <div :class="[ Object.keys(bot.preview).length !== 0?'removePlaceholder':'','logo']"
              @drop.prevent.stop="uploadFile"
              @dragover.prevent.stop
              @dragenter.prevent.stop
@@ -10,7 +10,7 @@
         >
 
           <div :class="[
-          filelist.length>0 || bot.preview.src !== ''
+          Object.keys(bot.preview).length !== 0
           ?'imageInfo':'removeImageInfo'
           ]">
             <p>{{bot.preview.name}} ({{bot.preview.size/1e6}} mb)</p>
@@ -24,7 +24,7 @@
           <div class="botLogo">
             <img
               :class="[
-                filelist.length>0 || bot.preview.src !== ''
+               Object.keys(bot.preview).length !== 0
                 ?'imageBorder':'removeImageBorderRadius'
                 ]"
               :src=bot.preview.src
@@ -106,6 +106,7 @@ export default {
         console.log(this.bot);
         this.$store.commit('botListAdd', this.bot);
         this.$store.commit('resetState');
+        this.filelist = [];
       }
     },
     loadFile() {

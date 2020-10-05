@@ -5,16 +5,8 @@ const botState = () => ({
   bot: {
     name: '',
     description: '',
-    image: {
-      src: '',
-      name: '',
-      size: 0,
-    },
-    preview: {
-      src: '',
-      name: '',
-      size: 0,
-    },
+    image: {},
+    preview: {},
     date: '',
   },
   openModal: false,
