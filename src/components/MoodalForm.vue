@@ -2,7 +2,7 @@
   <div class="modalForm" @click.stop.self="togleModal">
     <form>
       <div class="formMarkup">
-        <div :class="[ Object.keys(bot.preview).length !== 0?'removePlaceholder':'','logo']"
+        <div :class="[ bot.preview.size > 0 ? 'removePlaceholder':'','logo']"
              @drop.prevent.stop="uploadFile"
              @dragover.prevent.stop
              @dragenter.prevent.stop
@@ -10,13 +10,13 @@
         >
 
           <div :class="[
-          Object.keys(bot.preview).length !== 0
+          bot.preview.size > 0
           ?'imageInfo':'removeImageInfo'
           ]">
             <p>{{bot.preview.name}} ({{bot.preview.size/1e6}} mb)</p>
             <button class="removeImageButton"
                     type="button"
-                    @click="remove(filelist.indexOf(bot.image.name))"
+                    @click="remove"
                     title="remove image"><p>x</p>
             </button>
           </div>
@@ -24,7 +24,7 @@
           <div class="botLogo">
             <img
               :class="[
-               Object.keys(bot.preview).length !== 0
+               bot.preview.size > 0
                 ?'imageBorder':'removeImageBorderRadius'
                 ]"
               :src=bot.preview.src
@@ -68,7 +68,7 @@
       <div class="buttons" >
         <button class="saveBotInfo"
                 type="button"
-                @click="newBot">
+                @click="saveBot">
           <p>Save</p>
         </button>
       </div>
@@ -91,13 +91,17 @@ export default {
     };
   },
   computed: {
-    ...mapGetters({ changes: 'changes', bot: 'bot' }),
+    ...mapGetters({
+      changes: 'changes',
+      bot: 'bot',
+    }),
+
   },
   methods: {
     ...mapMutations({
       togleModal: 'openModal',
     }),
-    newBot() {
+    saveBot() {
       if (this.changes === false) {
         // const data = JSON.stringify(infoBot);
         // console.log(data);
@@ -105,27 +109,28 @@ export default {
         // this.$store.commit('botListAdd', JSON.parse(data));
         this.$store.commit('botListAdd', this.bot);
         this.$store.commit('resetBotState');
-        this.filelist = [];
       }
     },
     loadFile() {
       this.filelist = [...this.$refs.upload.files];
 
-      // eslint-disable-next-line prefer-destructuring
-      this.bot.image.src = this.filelist[0];
-      this.bot.image.name = this.filelist[0].name;
-      this.bot.image.size = this.filelist[0].size;
+      this.bot.image = ({
+        src: this.filelist[0],
+        name: this.filelist[0].name,
+        size: this.filelist[0].size,
+      });
 
-      this.bot.preview.src = URL.createObjectURL(this.filelist[0]);
-      this.bot.preview.name = this.filelist[0].name;
-      this.bot.preview.size = this.filelist[0].size;
+      this.bot.preview = ({
+        src: URL.createObjectURL(this.filelist[0]),
+        name: this.filelist[0].name,
+        size: this.filelist[0].size,
+      });
     },
     uploadFile(e) {
       this.$refs.upload.files = e.dataTransfer.files;
       this.loadFile();
     },
-    remove(i) {
-      this.filelist.splice(i, 1);
+    remove() {
       this.bot.image = {};
       this.bot.preview = {};
     },
