@@ -13,7 +13,7 @@
           bot.preview.size > 0
           ?'imageInfo':'removeImageInfo'
           ]">
-            <p>{{bot.preview.name}} ({{bot.preview.size/1e6}} mb)</p>
+            <p>{{bot.preview.name}} ({{formatBytes(bot.preview.size,3)}})</p>
             <button class="removeImageButton"
                     type="button"
                     @click="remove"
@@ -95,12 +95,23 @@ export default {
       changes: 'changes',
       bot: 'bot',
     }),
-
   },
   methods: {
     ...mapMutations({
       togleModal: 'openModal',
     }),
+    formatBytes(bytes, decimals = 2) {
+      if (bytes === 0) return '0 Bytes';
+
+      const k = 1024;
+      const dm = decimals < 0 ? 0 : decimals;
+      const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
+
+      const i = Math.floor(Math.log(bytes) / Math.log(k));
+
+      // eslint-disable-next-line no-restricted-properties
+      return `${parseFloat((bytes / Math.pow(k, i)).toFixed(dm))} ${sizes[i]}`;
+    },
     saveBot() {
       if (this.changes === false) {
         // const data = JSON.stringify(infoBot);
