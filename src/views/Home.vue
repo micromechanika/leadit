@@ -27,7 +27,7 @@ export default {
     ...mapGetters({ openModal: 'openModal' }),
   },
   methods: {
-    ...mapMutations({ resetState: 'resetState', togleModal: 'openModal' }),
+    ...mapMutations({ resetState: 'resetBotState', togleModal: 'openModal' }),
     cleanModal() {
       this.$store.commit('changes', false);
       this.resetState();

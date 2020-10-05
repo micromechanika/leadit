@@ -16,7 +16,7 @@
             <p>{{bot.preview.name}} ({{bot.preview.size/1e6}} mb)</p>
             <button class="removeImageButton"
                     type="button"
-                    @click="remove(filelist.indexOf(bot.id))"
+                    @click="remove(filelist.indexOf(bot.image.name))"
                     title="remove image"><p>x</p>
             </button>
           </div>
@@ -28,7 +28,7 @@
                 ?'imageBorder':'removeImageBorderRadius'
                 ]"
               :src=bot.preview.src
-            >
+            />
           </div>
 
           <label class="choceFile" for="file">
@@ -104,14 +104,18 @@ export default {
         // this.$store.dispatch('addBot', data);
         // this.$store.commit('botListAdd', JSON.parse(data));
         this.$store.commit('botListAdd', this.bot);
-        this.$store.commit('resetState');
+        this.$store.commit('resetBotState');
         this.filelist = [];
       }
     },
     loadFile() {
       this.filelist = [...this.$refs.upload.files];
+
       // eslint-disable-next-line prefer-destructuring
-      this.bot.image = this.filelist[0];
+      this.bot.image.src = this.filelist[0];
+      this.bot.image.name = this.filelist[0].name;
+      this.bot.image.size = this.filelist[0].size;
+
       this.bot.preview.src = URL.createObjectURL(this.filelist[0]);
       this.bot.preview.name = this.filelist[0].name;
       this.bot.preview.size = this.filelist[0].size;

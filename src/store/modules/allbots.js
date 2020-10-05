@@ -15,6 +15,7 @@ const allBots = {
     removeBot: (state, payload) => {
       state.botList = state.botList.filter((i) => i.id !== payload);
     },
+    // removeImage: (state, payload) => { state.bots.find((i) => i.id === payload); },
   },
   actions: {
     botList: (context) => {

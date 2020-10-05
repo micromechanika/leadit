@@ -22,7 +22,7 @@ const newBot = {
     changes: (state) => state.changes,
   },
   mutations: {
-    resetState: (state) => {
+    resetBotState: (state) => {
       Object.assign(state, botState());
     },
     openModal: (state) => {
@@ -31,7 +31,7 @@ const newBot = {
     changes: (state, payload) => {
       state.changes = payload;
     },
-    refactorBot: (state, payload) => { Object.assign(state.bot, payload); },
+    refactorBot: (state, payload) => { state.bot = payload; },
   },
   actions: {
     addBot: (context, payload) => {
