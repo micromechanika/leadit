@@ -9,6 +9,9 @@ export const ROUTES = {
   post: {
     newBot: '/newbot',
   },
+  put: {
+    changeBot: '/changebot',
+  },
 };
 
 export const instance = axios.create({
