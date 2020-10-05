@@ -16,7 +16,7 @@
             <p>{{bot.preview.name}} ({{bot.preview.size/1e6}} mb)</p>
             <button class="removeImageButton"
                     type="button"
-                    @click="remove(filelist.indexOf(bot.name))"
+                    @click="remove(filelist.indexOf(bot.id))"
                     title="remove image"><p>x</p>
             </button>
           </div>
@@ -103,7 +103,6 @@ export default {
         // console.log(data);
         // this.$store.dispatch('addBot', data);
         // this.$store.commit('botListAdd', JSON.parse(data));
-        console.log(this.bot);
         this.$store.commit('botListAdd', this.bot);
         this.$store.commit('resetState');
         this.filelist = [];

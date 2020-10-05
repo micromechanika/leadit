@@ -12,12 +12,15 @@ const allBots = {
   mutations: {
     botList: (state, payload) => { state.botList = payload; },
     botListAdd: (state, payload) => { state.botList.push(payload); },
-    removeBot: (state, payload) => { state.botList.splice(payload, 1); },
+    removeBot: (state, payload) => {
+      state.botList = state.botList.filter((i) => i.id !== payload);
+    },
   },
   actions: {
     botList: (context) => {
       const botList = [
         {
+          id: '1',
           name: 'leadit bot',
           description: 'leadit you',
           image: {},
@@ -25,6 +28,7 @@ const allBots = {
           date: 'Date Sat Oct 31 2020 19:38:00 GMT+0200 (Eastern European Standard Time)',
         },
         {
+          id: '2',
           name: 'cnn bot',
           description: 'cnn',
           image: {},
@@ -32,6 +36,7 @@ const allBots = {
           date: 'Date Sat Oct 31 2020 19:38:00 GMT+0200 (Eastern European Standard Time)',
         },
         {
+          id: '3',
           name: 'news bot',
           description: 'news you',
           image: {},

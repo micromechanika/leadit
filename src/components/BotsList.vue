@@ -1,11 +1,11 @@
 <template>
   <div class="botlist">
     <BotData
-      v-for="(bot, botIndex) in this.bots"
-      :key="botIndex"
+      v-for="bot in this.bots"
+      :key="bot.id"
       :bot="bot"
-      @removeBot="removeBot(botIndex)"
-      @refactorBot="refactorBot(botIndex)"
+      @removeBot="removeBot(bot.id)"
+      @refactorBot="refactorBot(bot.id)"
     />
   </div>
 </template>
@@ -27,7 +27,7 @@ export default {
       this.$store.commit('removeBot', key);
     },
     refactorBot(key) {
-      this.$store.commit('refactorBot', this.bots[key]);
+      this.$store.commit('refactorBot', this.bots.find((i) => i.id === key));
     },
   },
   beforeCreate() {

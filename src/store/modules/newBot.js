@@ -3,6 +3,7 @@ import { ROUTES, instance } from '../axiosProps';
 
 const botState = () => ({
   bot: {
+    id: `${Date.now()}`,
     name: '',
     description: '',
     image: {},
@@ -30,7 +31,7 @@ const newBot = {
     changes: (state, payload) => {
       state.changes = payload;
     },
-    refactorBot: (state, payload) => { state.bot = payload; },
+    refactorBot: (state, payload) => { Object.assign(state.bot, payload); },
   },
   actions: {
     addBot: (context, payload) => {

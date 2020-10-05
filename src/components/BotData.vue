@@ -15,6 +15,7 @@ export default {
       type: Object,
       default() {
         return {
+          id: '',
           name: '',
           description: '',
           image: {},
