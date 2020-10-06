@@ -88,7 +88,7 @@ export default {
   data() {
     return {
       filelist: [],
-      bot: {},
+      bot: this.changes ? this.$store.getters.refBot : this.$store.getters.newBot,
     };
   },
   computed: {
