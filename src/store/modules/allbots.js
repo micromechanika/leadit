@@ -15,7 +15,6 @@ const allBots = {
     removeBot: (state, payload) => {
       state.botList = state.botList.filter((i) => i.id !== payload);
     },
-    // removeImage: (state, payload) => { state.bots.find((i) => i.id === payload); },
   },
   actions: {
     getBotList: (context) => {
@@ -54,21 +53,11 @@ const allBots = {
         })
         .catch((err) => console.error(err));
     },
-    changeBot: (context, payload) => {
-      instance.headers = { 'content-type': 'application/json; charset=utf-8' };
-      instance.put(ROUTES.put.changeBot, payload)
-        .then(() => {
-          // const botList = response.data;
-          // context.commit('botList', botList);
-        })
-        .catch((err) => console.error(err));
-    },
     deleteBot: (context, payload) => {
       instance.headers = { 'content-type': 'application/json; charset=utf-8' };
       instance.put(ROUTES.delete.deleteBot, payload)
         .then(() => {
-          // const botList = response.data;
-          // context.commit('botList', botList);
+          this.$store.commit('removeBot', payload);
         })
         .catch((err) => console.error(err));
     },

@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <button class="createBot"
-            @click="cleanModal" >
+            @click="createNewBot" >
       <p>create bot</p>
     </button>
     <BotsList/>
@@ -27,8 +27,8 @@ export default {
     ...mapGetters({ openModal: 'openModal' }),
   },
   methods: {
-    ...mapMutations({ resetState: 'resetBotState', togleModal: 'openModal' }),
-    cleanModal() {
+    ...mapMutations({ resetState: 'resetNewBotState', togleModal: 'openModal' }),
+    createNewBot() {
       this.$store.commit('changes', false);
       this.resetState();
       this.togleModal();

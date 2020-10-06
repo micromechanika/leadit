@@ -24,7 +24,6 @@ export default {
   },
   methods: {
     removeBot(key) {
-      this.$store.commit('removeBot', key);
       this.$store.dispatch('deleteBot', key);
     },
     refactorBot(key) {

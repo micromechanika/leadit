@@ -1,5 +1,5 @@
 <template>
-  <div class="modalForm" @click.stop.self="togleModal">
+  <div class="modalForm" @click.stop.self="changeBot">
     <form>
       <div class="formMarkup">
         <div :class="[ bot.preview.size > 0 ? 'removePlaceholder':'','logo']"
@@ -68,7 +68,7 @@
       <div class="buttons" >
         <button class="saveBotInfo"
                 type="button"
-                @click="saveBot">
+                @click="saveNewBot">
           <p>Save</p>
         </button>
       </div>
@@ -88,12 +88,12 @@ export default {
   data() {
     return {
       filelist: [],
+      bot: {},
     };
   },
   computed: {
     ...mapGetters({
       changes: 'changes',
-      bot: 'bot',
     }),
   },
   methods: {
@@ -112,17 +112,22 @@ export default {
       // eslint-disable-next-line no-restricted-properties
       return `${parseFloat((bytes / Math.pow(k, i)).toFixed(dm))} ${sizes[i]}`;
     },
-    saveBot() {
+    saveNewBot() {
+      // const data = JSON.stringify(infoBot);
+      // console.log(data);
+      // this.$store.dispatch('addBot', data);
+      // this.$store.commit('botListAdd', JSON.parse(data));
       if (this.changes === false) {
-        // const data = JSON.stringify(infoBot);
-        // console.log(data);
-        // this.$store.dispatch('addBot', data);
-        // this.$store.commit('botListAdd', JSON.parse(data));
-        this.$store.commit('botListAdd', this.bot);
         this.$store.dispatch('postBot', this.bot);
-        this.$store.commit('resetBotState');
+        this.$store.commit('resetNewBotState');
+        this.$store.commit('resetModalState');
       }
-      this.$store.dispatch('changeBot', this.bot);
+    },
+    changeBot() {
+      this.togleModal();
+      this.$store.dispatch('putBot', this.bot);
+      this.$store.commit('resetRefactorBotState');
+      this.$store.commit('resetModalState');
     },
     loadFile() {
       this.filelist = [...this.$refs.upload.files];
