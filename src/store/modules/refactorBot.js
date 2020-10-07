@@ -35,6 +35,7 @@ const refBot = {
       const bot = JSON.parse(payload);
       console.log('refactorBot', bot);
       context.commit('refactorBot', bot);
+      context.commit('showRefactorBot', bot);
       // context.commit('resetRefactorBotState');
       // context.commit('resetModalState');
 

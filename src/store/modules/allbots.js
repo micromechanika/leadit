@@ -15,6 +15,11 @@ const allBots = {
     removeBot: (state, payload) => {
       state.botList = state.botList.filter((i) => i.id !== payload);
     },
+    showRefactorBot: (state, payload) => {
+      const bot = payload;
+      const index = state.botList.findIndex((item) => item.id === bot.id);
+      state.botList.splice(index, 1, bot);
+    },
   },
   actions: {
     getBotList: (context) => {
