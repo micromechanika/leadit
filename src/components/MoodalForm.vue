@@ -91,12 +91,10 @@ export default {
     };
   },
   computed: {
-    ...mapGetters({
-      changes: 'changes',
-      refBot: 'refBot',
-      newBot: 'newBot',
-      bot: this.changes ? this.refBot : this.newBot,
-    }),
+    ...mapGetters(['changes', 'refBot', 'newBot']),
+    bot() {
+      return this.changes ? this.refBot : this.newBot;
+    },
   },
   methods: {
     ...mapMutations({

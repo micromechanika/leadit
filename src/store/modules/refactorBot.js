@@ -3,7 +3,6 @@ import { ROUTES, instance } from '../axiosProps';
 
 const refactorBotState = () => ({
   bot: {
-    id: '',
     name: '',
     description: '',
     image: {
@@ -33,13 +32,19 @@ const refBot = {
   },
   actions: {
     putBot: (context, payload) => {
-      instance.put(ROUTES.put.changeBot, payload)
-        .then(() => {
-          context.commit('refactorBot', JSON.parse(payload));
-          context.commit('resetRefactorBotState');
-          context.commit('resetModalState');
-        })
-        .catch((err) => console.error(err));
+      const bot = JSON.parse(payload);
+      console.log('refactorBot', bot);
+      context.commit('refactorBot', bot);
+      // context.commit('resetRefactorBotState');
+      // context.commit('resetModalState');
+
+      // instance.put(ROUTES.put.changeBot, payload)
+      //   .then(() => {
+      //     context.commit('refactorBot', JSON.parse(payload));
+      //     context.commit('resetRefactorBotState');
+      //     context.commit('resetModalState');
+      //   })
+      //   .catch((err) => console.error(err));
     },
   },
 };

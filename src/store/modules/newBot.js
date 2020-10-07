@@ -32,13 +32,18 @@ const newBot = {
   },
   actions: {
     postBot: (context, payload) => {
-      instance.post(ROUTES.post.newBot, payload)
-        .then(() => {
-          context.commit('botListAdd', JSON.parse(payload));
-          context.commit('resetNewBotState');
-          context.commit('resetModalState');
-        })
-        .catch((err) => console.error(err));
+      console.log('botListAdd', JSON.parse(payload));
+      context.commit('botListAdd', JSON.parse(payload));
+      context.commit('resetNewBotState');
+      context.commit('resetModalState');
+
+      // instance.post(ROUTES.post.newBot, payload)
+      //   .then(() => {
+      //     context.commit('botListAdd', JSON.parse(payload));
+      //     context.commit('resetNewBotState');
+      //     context.commit('resetModalState');
+      //   })
+      //   .catch((err) => console.error(err));
     },
   },
 };
