@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const SERVER_URL = 'https://my.com';
+const SERVER_URL = 'http://localhost:3000';
 
 export const ROUTES = {
   get: {
@@ -20,5 +20,5 @@ export const ROUTES = {
 export const instance = axios.create({
   baseURL: SERVER_URL,
   timeout: 5000,
-  headers: { 'Access-Control-Allow-Origin': '*' },
+  headers: { 'content-type': 'application/json; charset=utf-8' },
 });

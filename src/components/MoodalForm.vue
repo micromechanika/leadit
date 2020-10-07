@@ -88,12 +88,14 @@ export default {
   data() {
     return {
       filelist: [],
-      bot: this.changes ? this.$store.getters.refBot : this.$store.getters.newBot,
     };
   },
   computed: {
     ...mapGetters({
       changes: 'changes',
+      refBot: 'refBot',
+      newBot: 'newBot',
+      bot: this.changes ? this.refBot : this.newBot,
     }),
   },
   methods: {
@@ -113,21 +115,13 @@ export default {
       return `${parseFloat((bytes / Math.pow(k, i)).toFixed(dm))} ${sizes[i]}`;
     },
     saveNewBot() {
-      // const data = JSON.stringify(infoBot);
-      // console.log(data);
-      // this.$store.dispatch('addBot', data);
-      // this.$store.commit('botListAdd', JSON.parse(data));
       if (this.changes === false) {
-        this.$store.dispatch('postBot', this.bot);
-        this.$store.commit('resetNewBotState');
-        this.$store.commit('resetModalState');
+        this.$store.dispatch('postBot', JSON.stringify(this.bot));
       }
     },
     changeBot() {
       this.togleModal();
-      this.$store.dispatch('putBot', this.bot);
-      this.$store.commit('resetRefactorBotState');
-      this.$store.commit('resetModalState');
+      this.$store.dispatch('putBot', JSON.stringify(this.bot));
     },
     loadFile() {
       this.filelist = [...this.$refs.upload.files];

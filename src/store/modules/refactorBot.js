@@ -33,10 +33,11 @@ const refBot = {
   },
   actions: {
     putBot: (context, payload) => {
-      instance.headers = { 'content-type': 'application/json; charset=utf-8' };
       instance.put(ROUTES.put.changeBot, payload)
         .then(() => {
-          this.$store.commit('botListAdd', this.bot);
+          context.commit('refactorBot', JSON.parse(payload));
+          context.commit('resetRefactorBotState');
+          context.commit('resetModalState');
         })
         .catch((err) => console.error(err));
     },

@@ -32,13 +32,11 @@ const newBot = {
   },
   actions: {
     postBot: (context, payload) => {
-      // console.log(payload);
-      instance.headers = {
-        'content-type': 'multipart/form-data',
-      };
       instance.post(ROUTES.post.newBot, payload)
         .then(() => {
-          this.$store.commit('botListAdd', payload);
+          context.commit('botListAdd', JSON.parse(payload));
+          context.commit('resetNewBotState');
+          context.commit('resetModalState');
         })
         .catch((err) => console.error(err));
     },
