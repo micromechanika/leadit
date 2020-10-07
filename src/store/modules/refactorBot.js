@@ -33,19 +33,18 @@ const refBot = {
   actions: {
     putBot: (context, payload) => {
       const bot = JSON.parse(payload);
-      console.log('refactorBot', bot);
-      context.commit('refactorBot', bot);
-      context.commit('showRefactorBot', bot);
-      // context.commit('resetRefactorBotState');
-      // context.commit('resetModalState');
-
-      // instance.put(ROUTES.put.changeBot, payload)
-      //   .then(() => {
-      //     context.commit('refactorBot', JSON.parse(payload));
-      //     context.commit('resetRefactorBotState');
-      //     context.commit('resetModalState');
-      //   })
-      //   .catch((err) => console.error(err));
+      instance.put(ROUTES.put.changeBot, payload)
+        .then(() => {
+          context.commit('refactorBot', bot);
+        })
+        .then(() => {
+          context.commit('showRefactorBot', bot);
+        })
+        .then(() => {
+          context.commit('resetRefactorBotState');
+          context.commit('resetModalState');
+        })
+        .catch((err) => console.error(err));
     },
   },
 };
