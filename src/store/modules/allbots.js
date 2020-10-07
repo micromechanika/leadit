@@ -30,7 +30,7 @@ const allBots = {
         .catch((err) => console.error(err));
     },
     deleteBot: (context, payload) => {
-      instance.put(ROUTES.delete.deleteBot, JSON.stringify(payload))
+      instance.delete(ROUTES.delete.deleteBot, { data: payload })
         .then(() => {
           context.commit('removeBot', payload);
         })

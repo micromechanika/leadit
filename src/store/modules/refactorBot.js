@@ -39,10 +39,6 @@ const refBot = {
         .then(() => {
           context.commit('showRefactorBot', payload);
         })
-        .then(() => {
-          context.commit('resetRefactorBotState');
-          context.commit('resetModalState');
-        })
         .catch((err) => console.error(err));
     },
   },

@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const SERVER_URL = 'http://localhost:3000';
+const SERVER_URL = 'http://127.0.0.1:3000';
 
 export const ROUTES = {
   get: {
