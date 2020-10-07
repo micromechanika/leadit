@@ -30,9 +30,9 @@ const allBots = {
         .catch((err) => console.error(err));
     },
     deleteBot: (context, payload) => {
-      instance.put(ROUTES.delete.deleteBot, payload)
+      instance.put(ROUTES.delete.deleteBot, JSON.stringify(payload))
         .then(() => {
-          context.commit('removeBot', JSON.parse(payload));
+          context.commit('removeBot', payload);
         })
         .catch((err) => console.error(err));
     },

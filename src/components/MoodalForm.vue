@@ -114,12 +114,12 @@ export default {
     },
     saveNewBot() {
       if (this.changes === false) {
-        this.$store.dispatch('postBot', JSON.stringify(this.bot));
+        this.$store.dispatch('postBot', this.bot);
       }
     },
     changeBot() {
       this.togleModal();
-      this.$store.dispatch('putBot', JSON.stringify(this.bot));
+      this.$store.dispatch('putBot', this.bot);
     },
     loadFile() {
       this.filelist = [...this.$refs.upload.files];
@@ -141,6 +141,7 @@ export default {
       this.loadFile();
     },
     remove() {
+      this.filelist = [];
       this.bot.image = {};
       this.bot.preview = {};
     },

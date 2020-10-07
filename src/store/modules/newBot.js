@@ -32,9 +32,9 @@ const newBot = {
   },
   actions: {
     postBot: (context, payload) => {
-      instance.post(ROUTES.post.newBot, payload)
+      instance.post(ROUTES.post.newBot, JSON.stringify(payload))
         .then(() => {
-          context.commit('botListAdd', JSON.parse(payload));
+          context.commit('botListAdd', payload);
           context.commit('resetNewBotState');
           context.commit('resetModalState');
         })

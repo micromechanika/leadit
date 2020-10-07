@@ -24,11 +24,11 @@ export default {
   },
   methods: {
     removeBot(key) {
-      this.$store.dispatch('deleteBot', JSON.stringify(key));
+      this.$store.dispatch('deleteBot', key);
     },
     refactorBot(key) {
-      const refBot = this.bots.find((i) => i.id === key);
-      this.$store.dispatch('putBot', JSON.stringify(refBot));
+      const bot = this.bots.find((i) => i.id === key);
+      this.$store.dispatch('putBot', bot);
     },
   },
   beforeCreate() {

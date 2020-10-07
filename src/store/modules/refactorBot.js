@@ -32,13 +32,12 @@ const refBot = {
   },
   actions: {
     putBot: (context, payload) => {
-      const bot = JSON.parse(payload);
-      instance.put(ROUTES.put.changeBot, payload)
+      instance.put(ROUTES.put.changeBot, JSON.stringify(payload))
         .then(() => {
-          context.commit('refactorBot', bot);
+          context.commit('refactorBot', payload);
         })
         .then(() => {
-          context.commit('showRefactorBot', bot);
+          context.commit('showRefactorBot', payload);
         })
         .then(() => {
           context.commit('resetRefactorBotState');
