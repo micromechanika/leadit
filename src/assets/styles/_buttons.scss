@@ -1,9 +1,8 @@
 //create bot
 $create_button_color: green;
 $create_button_text_color: white;
-$create_button_border_color:green;
+$create_button_border_color: green;
 $create_button_hover_color: #025502;
-
 
 //delete bot
 $delete_button_color: crimson;
@@ -17,7 +16,6 @@ $save_button_text_color: white;
 $save_button_border_color: green;
 $save_button_hover_color: #025502;
 
-
 //choice image
 $file_button_color: blue;
 $file_button_text_color: white;
@@ -25,11 +23,7 @@ $file_button_border_color: blue;
 $file_button_hover_color: #0a0ad9;
 
 //remove image
-$remove_image_button_color:crimson;
-$remove_image_button_text_color:white;
-$remove_image_button_border_color:crimson;
-$remove_image_button_hover_color:#a30d0d;
-
-
-
-
+$remove_image_button_color: crimson;
+$remove_image_button_text_color: white;
+$remove_image_button_border_color: crimson;
+$remove_image_button_hover_color: #a30d0d;

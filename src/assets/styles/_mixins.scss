@@ -1,43 +1,46 @@
-
 @mixin font_rule {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  font-style: normal;
-  background: white;
-  font-size: $document_font_size;
+	font-family: Avenir, Helvetica, Arial, sans-serif;
+	font-style: normal;
+	background: white;
+	font-size: $document_font_size;
 }
 
-
-@mixin button($color,$border,$text_color,$hover_color ) {
-  background-color: $color;
-  border: 0.1em solid $border;
-  color: $text_color;
-  border-radius: 0.5em;
-  user-select: none;
-  cursor: pointer;
-  &:hover{
-    background-color: $hover_color;
-  }
-  &:hover,&:active,&:focus {outline:none;}
-  &::-moz-focus-inner {border:0;}
+@mixin button($color, $border, $text_color, $hover_color) {
+	background-color: $color;
+	border: 0.1em solid $border;
+	color: $text_color;
+	border-radius: 0.5em;
+	user-select: none;
+	cursor: pointer;
+	&:hover {
+		background-color: $hover_color;
+	}
+	&:hover,
+	&:active,
+	&:focus {
+		outline: none;
+	}
+	&::-moz-focus-inner {
+		border: 0;
+	}
 }
 
 @mixin centryfy_row {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
 }
-
 
 @mixin mQ($arg) {
-  @media screen and (min-width: $arg) {
-    @content;
-  }
+	@media screen and (min-width: $arg) {
+		@content;
+	}
 }
 
-@mixin print(){
-  @media print {
-    @content
-  }
+@mixin print() {
+	@media print {
+		@content;
+	}
 }
