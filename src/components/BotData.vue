@@ -1,8 +1,8 @@
 <template>
 	<div class="botData">
-		<div class="botName" @click="refactorBot"
-			><p>{{ bot.name }}</p></div
-		>
+		<div class="botName" @click="refactorBot">
+			<p>{{ bot.name }}</p>
+		</div>
 		<button class="deleteBot" @click="removeBot"><p>remove bot</p></button>
 	</div>
 </template>

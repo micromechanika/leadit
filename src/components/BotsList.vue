@@ -1,7 +1,7 @@
 <template>
 	<div class="botlist">
 		<BotData
-			v-for="bot in this.bots"
+			v-for="bot in bots"
 			:key="bot.id"
 			:bot="bot"
 			@removeBot="removeBot(bot.id)"
